@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UITableViewController {
+class HomeViewController: UITableViewController {
 
     fileprivate func setupNavigationItems() {
         navigationItem.title = "Home"
@@ -22,22 +22,31 @@ class ViewController: UITableViewController {
         tableView.backgroundColor = .red
     }
     
+    let menuViewController = MenuViewController()
+    let maxWidth: CGFloat = 300
+    
     @objc func handleOpen() {
-        let vc = MenuViewController()
-        
-        vc.view.frame = CGRect(x: 0, y: 0, width: 300, height: view.frame.height)
+        menuViewController.view.frame = CGRect(x: -maxWidth, y: 0, width: 300, height: view.frame.height)
         let mainWindow = UIApplication.shared.keyWindow
-        mainWindow?.addSubview(vc.view)
+        mainWindow?.addSubview(menuViewController.view)
+        
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseIn, animations: {
+            self.menuViewController.view.transform = CGAffineTransform(translationX: self.maxWidth, y: 0)
+        })
+        
+        addChild(menuViewController)
     }
     
     @objc func handleHide() {
-        
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+            self.menuViewController.view.transform = .identity
+        })
     }
     
     
 }
 
-extension ViewController {
+extension HomeViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 5
     }

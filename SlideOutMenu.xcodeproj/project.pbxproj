@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		EF5E83D32304CE5D00832F31 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5E83D22304CE5D00832F31 /* AppDelegate.swift */; };
-		EF5E83D52304CE5D00832F31 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5E83D42304CE5D00832F31 /* ViewController.swift */; };
+		EF5E83D52304CE5D00832F31 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5E83D42304CE5D00832F31 /* HomeViewController.swift */; };
 		EF5E83D82304CE5D00832F31 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF5E83D62304CE5D00832F31 /* Main.storyboard */; };
 		EF5E83DA2304CE5F00832F31 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF5E83D92304CE5F00832F31 /* Assets.xcassets */; };
 		EF5E83DD2304CE5F00832F31 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF5E83DB2304CE5F00832F31 /* LaunchScreen.storyboard */; };
@@ -18,7 +18,7 @@
 /* Begin PBXFileReference section */
 		EF5E83CF2304CE5D00832F31 /* SlideOutMenu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SlideOutMenu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF5E83D22304CE5D00832F31 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		EF5E83D42304CE5D00832F31 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		EF5E83D42304CE5D00832F31 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		EF5E83D72304CE5D00832F31 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EF5E83D92304CE5F00832F31 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EF5E83DC2304CE5F00832F31 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -56,15 +56,23 @@
 		EF5E83D12304CE5D00832F31 /* SlideOutMenu */ = {
 			isa = PBXGroup;
 			children = (
+				EF5E83E623051BAD00832F31 /* ViewController */,
 				EF5E83D22304CE5D00832F31 /* AppDelegate.swift */,
-				EF5E83D42304CE5D00832F31 /* ViewController.swift */,
 				EF5E83D62304CE5D00832F31 /* Main.storyboard */,
 				EF5E83D92304CE5F00832F31 /* Assets.xcassets */,
 				EF5E83DB2304CE5F00832F31 /* LaunchScreen.storyboard */,
 				EF5E83DE2304CE5F00832F31 /* Info.plist */,
-				EF5E83E42304DA8100832F31 /* MenuViewController.swift */,
 			);
 			path = SlideOutMenu;
+			sourceTree = "<group>";
+		};
+		EF5E83E623051BAD00832F31 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				EF5E83D42304CE5D00832F31 /* HomeViewController.swift */,
+				EF5E83E42304DA8100832F31 /* MenuViewController.swift */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,7 +146,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EF5E83D52304CE5D00832F31 /* ViewController.swift in Sources */,
+				EF5E83D52304CE5D00832F31 /* HomeViewController.swift in Sources */,
 				EF5E83E52304DA8100832F31 /* MenuViewController.swift in Sources */,
 				EF5E83D32304CE5D00832F31 /* AppDelegate.swift in Sources */,
 			);
