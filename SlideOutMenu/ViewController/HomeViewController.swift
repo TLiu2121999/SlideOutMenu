@@ -16,34 +16,66 @@ class HomeViewController: UITableViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Hide", style: .done, target: self, action: #selector(handleHide))
     }
     
+    fileprivate func setupMenuView() {
+        menuViewController.view.frame = CGRect(x: -maxWidth, y: 0, width: 300, height: view.frame.height)
+        let mainWindow = UIApplication.shared.keyWindow
+        mainWindow?.addSubview(menuViewController.view)
+        addChild(menuViewController)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationItems()
         tableView.backgroundColor = .red
+        setupMenuView()
+        
+        let gesture = UIPanGestureRecognizer(target: self, action: #selector(handlePan))
+        view.addGestureRecognizer(gesture)
     }
     
     let menuViewController = MenuViewController()
     let maxWidth: CGFloat = 300
     
-    @objc func handleOpen() {
-        menuViewController.view.frame = CGRect(x: -maxWidth, y: 0, width: 300, height: view.frame.height)
-        let mainWindow = UIApplication.shared.keyWindow
-        mainWindow?.addSubview(menuViewController.view)
-        
-        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseIn, animations: {
-            self.menuViewController.view.transform = CGAffineTransform(translationX: self.maxWidth, y: 0)
+    fileprivate func performAnimation(transform: CGAffineTransform) {
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+            self.navigationController?.view.transform = transform
+            self.menuViewController.view.transform = transform
         })
+    }
+    
+    @objc func handlePan(gesture: UIPanGestureRecognizer) {
+        let trans = gesture.translation(in: view)
+        var x = trans.x
         
-        addChild(menuViewController)
+        x = max(0, x)
+        x = min(maxWidth, x)
+        
+        let transform = CGAffineTransform(translationX: x, y: 0)
+        
+        
+        switch gesture.state {
+        case .changed:
+            navigationController?.view.transform = transform
+            menuViewController.view.transform = transform
+        case .ended:
+            if x > 150 {
+                handleOpen()
+            } else {
+                handleHide()
+            }
+        default:
+            return
+        }
+    
+    }
+    
+    @objc func handleOpen() {
+        performAnimation(transform: CGAffineTransform(translationX: self.maxWidth, y: 0))
     }
     
     @objc func handleHide() {
-        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
-            self.menuViewController.view.transform = .identity
-        })
+        performAnimation(transform: .identity)
     }
-    
-    
 }
 
 extension HomeViewController {
