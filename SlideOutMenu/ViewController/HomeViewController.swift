@@ -35,7 +35,8 @@ class HomeViewController: UITableViewController {
     
     let menuViewController = MenuViewController()
     let maxWidth: CGFloat = 300
-    
+    var isMenuOpen: Bool = false
+    let velocityThreshhold: CGFloat = 500
     fileprivate func performAnimation(transform: CGAffineTransform) {
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
             self.navigationController?.view.transform = transform
@@ -45,23 +46,45 @@ class HomeViewController: UITableViewController {
     
     @objc func handlePan(gesture: UIPanGestureRecognizer) {
         let trans = gesture.translation(in: view)
-        var x = trans.x
-        
-        x = max(0, x)
-        x = min(maxWidth, x)
-        
-        let transform = CGAffineTransform(translationX: x, y: 0)
-        
+        let velocity = gesture.velocity(in: view)
         
         switch gesture.state {
         case .changed:
+            var x = trans.x
+            
+            if isMenuOpen {
+                x += maxWidth
+            }
+            
+            x = max(0, x)
+            x = min(maxWidth, x)
+            
+            let transform = CGAffineTransform(translationX: x, y: 0)
             navigationController?.view.transform = transform
             menuViewController.view.transform = transform
         case .ended:
-            if x > 150 {
-                handleOpen()
+            if isMenuOpen {
+                if abs(velocity.x) > velocityThreshhold {
+                    handleHide()
+                    return
+                }
+                
+                if abs(trans.x) > 150 {
+                    handleHide()
+                } else {
+                    handleOpen()
+                }
             } else {
-                handleHide()
+                if velocity.x > velocityThreshhold {
+                    handleOpen()
+                    return
+                }
+                
+                if trans.x > 150 {
+                    handleOpen()
+                } else {
+                    handleHide()
+                }
             }
         default:
             return
@@ -70,10 +93,12 @@ class HomeViewController: UITableViewController {
     }
     
     @objc func handleOpen() {
+        isMenuOpen = true
         performAnimation(transform: CGAffineTransform(translationX: self.maxWidth, y: 0))
     }
     
     @objc func handleHide() {
+        isMenuOpen = false
         performAnimation(transform: .identity)
     }
 }
