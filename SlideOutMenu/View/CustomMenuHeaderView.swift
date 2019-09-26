@@ -12,7 +12,7 @@ class CustomMenuHeaderView: UIView {
     let nameLabel = UILabel()
     let userNameLabel = UILabel()
     let statusLabel = UILabel()
-    let profileImageView = ProfileImageView()
+    let profileImageView = CustomizedImageView(size: 48)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -67,11 +67,7 @@ class CustomMenuHeaderView: UIView {
         profileImageView.contentMode = .scaleAspectFit
         profileImageView.layer.masksToBounds = false
         profileImageView.layer.cornerRadius = 24
-        
-        profileImageView.layer.borderWidth = 1.0
         profileImageView.clipsToBounds = true
-        profileImageView.layer.borderColor = UIColor.red.cgColor
-        
         profileImageView.image = profileImage
     }
     
