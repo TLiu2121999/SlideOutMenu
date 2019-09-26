@@ -13,6 +13,9 @@
 		EF5E83DA2304CE5F00832F31 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EF5E83D92304CE5F00832F31 /* Assets.xcassets */; };
 		EF5E83DD2304CE5F00832F31 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF5E83DB2304CE5F00832F31 /* LaunchScreen.storyboard */; };
 		EF5E83E52304DA8100832F31 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5E83E42304DA8100832F31 /* MenuViewController.swift */; };
+		EF5E83EB230613D500832F31 /* BaseSlidingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5E83EA230613D500832F31 /* BaseSlidingViewController.swift */; };
+		EF5E83F223072D6D00832F31 /* CustomMenuHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF5E83F123072D6D00832F31 /* CustomMenuHeaderView.swift */; };
+		EFE247FC233D5AA900AAC086 /* SpaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFE247FB233D5AA900AAC086 /* SpaceView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +27,9 @@
 		EF5E83DC2304CE5F00832F31 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EF5E83DE2304CE5F00832F31 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EF5E83E42304DA8100832F31 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		EF5E83EA230613D500832F31 /* BaseSlidingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseSlidingViewController.swift; sourceTree = "<group>"; };
+		EF5E83F123072D6D00832F31 /* CustomMenuHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMenuHeaderView.swift; sourceTree = "<group>"; };
+		EFE247FB233D5AA900AAC086 /* SpaceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +62,7 @@
 		EF5E83D12304CE5D00832F31 /* SlideOutMenu */ = {
 			isa = PBXGroup;
 			children = (
+				EF5E83EC23072ACE00832F31 /* View */,
 				EF5E83E623051BAD00832F31 /* ViewController */,
 				EF5E83D22304CE5D00832F31 /* AppDelegate.swift */,
 				EF5E83D62304CE5D00832F31 /* Main.storyboard */,
@@ -69,10 +76,28 @@
 		EF5E83E623051BAD00832F31 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				EF5E83E72306134B00832F31 /* Base */,
 				EF5E83D42304CE5D00832F31 /* HomeViewController.swift */,
 				EF5E83E42304DA8100832F31 /* MenuViewController.swift */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		EF5E83E72306134B00832F31 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				EF5E83EA230613D500832F31 /* BaseSlidingViewController.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		EF5E83EC23072ACE00832F31 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				EF5E83F123072D6D00832F31 /* CustomMenuHeaderView.swift */,
+				EFE247FB233D5AA900AAC086 /* SpaceView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -148,7 +173,10 @@
 			files = (
 				EF5E83D52304CE5D00832F31 /* HomeViewController.swift in Sources */,
 				EF5E83E52304DA8100832F31 /* MenuViewController.swift in Sources */,
+				EF5E83EB230613D500832F31 /* BaseSlidingViewController.swift in Sources */,
+				EF5E83F223072D6D00832F31 /* CustomMenuHeaderView.swift in Sources */,
 				EF5E83D32304CE5D00832F31 /* AppDelegate.swift in Sources */,
+				EFE247FC233D5AA900AAC086 /* SpaceView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

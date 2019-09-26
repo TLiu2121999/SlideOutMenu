@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HomeViewController: UITableViewController {
+class HomeViewController: UITableViewController, UIGestureRecognizerDelegate {
     let window = UIApplication.shared.keyWindow
     let menuViewController = MenuViewController()
     let maxWidth: CGFloat = 300
@@ -28,7 +28,7 @@ class HomeViewController: UITableViewController {
         setupNavigationItems()
         tableView.backgroundColor = .red
         setupMenuView()
-        setupPanGesture()
+        //setupPanGesture()
         window?.addSubview(darkOverlay)
         darkOverlay.frame = window?.bounds ?? .zero
     }
@@ -75,6 +75,7 @@ class HomeViewController: UITableViewController {
     fileprivate func setupPanGesture() {
         let gesture = UIPanGestureRecognizer(target: self, action: #selector(handlePan))
         view.addGestureRecognizer(gesture)
+        gesture.delegate = self
     }
     
     fileprivate func setupNavigationItems() {
@@ -136,5 +137,4 @@ extension HomeViewController {
         cell.textLabel?.text = "Row \(indexPath.row)"
         return cell
     }
-    
 }
