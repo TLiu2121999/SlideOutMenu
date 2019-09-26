@@ -30,7 +30,6 @@ class CustomMenuHeaderView: UIView {
     
     fileprivate func setupStackView() {
         let stackView = UIStackView(arrangedSubviews: [
-            UIView(),
             UIStackView(arrangedSubviews: [profileImageView, UIView()]),
             nameLabel,
             userNameLabel,
