@@ -9,21 +9,34 @@
 import UIKit
 
 class CustomMenuHeaderView: UIView {
+    let nameLabel = UILabel()
+    let userNameLabel = UILabel()
+    let statusLabel = UILabel()
+    let profileImageView = ProfileImageView()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .white
+
+        setupLabels()
         
-        let nameLabel = UILabel()
-        nameLabel.text = "Tongtong Liu"
-        nameLabel.font = UIFont.systemFont(ofSize: 20, weight: .heavy)
-        
-        let userNameLabel = UILabel()
-        userNameLabel.text = "@harry528tt"
-        
-        let statusLabel = UILabel()
-        statusLabel.text = "82 followers, 10 following"
-        
-        let stackView = UIStackView(arrangedSubviews: [UIView(), nameLabel, userNameLabel, SpaceView(space: 16), statusLabel])
+        setupProfileImage()
+        setupStackView()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    fileprivate func setupStackView() {
+        let stackView = UIStackView(arrangedSubviews: [
+            UIView(),
+            UIStackView(arrangedSubviews: [profileImageView, UIView()]),
+            nameLabel,
+            userNameLabel,
+            SpaceView(space: 16),
+            statusLabel
+            ])
         stackView.axis = .vertical
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.spacing = 4
@@ -37,12 +50,36 @@ class CustomMenuHeaderView: UIView {
             stackView.bottomAnchor.constraint(equalTo: bottomAnchor),
             stackView.trailingAnchor.constraint(equalTo: trailingAnchor),
             stackView.leadingAnchor.constraint(equalTo: leadingAnchor)
-        ])
+            ])
+    }
+    
+    fileprivate func setupLabels() {
+        nameLabel.text = "Tongtong Liu"
+        nameLabel.font = UIFont.systemFont(ofSize: 20, weight: .heavy)
         
+        userNameLabel.text = "@harry528tt"        
+        setAttributedText()
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    fileprivate func setupProfileImage() {
+        let profileImage = UIImage(named: "flora")
+
+        profileImageView.contentMode = .scaleAspectFit
+        profileImageView.layer.masksToBounds = false
+        profileImageView.layer.cornerRadius = 24
+        
+        profileImageView.layer.borderWidth = 1.0
+        profileImageView.clipsToBounds = true
+        profileImageView.layer.borderColor = UIColor.red.cgColor
+        
+        profileImageView.image = profileImage
     }
     
+    fileprivate func setAttributedText() {
+        let attributedText = NSMutableAttributedString(string: "42 ", attributes: [.font: UIFont.systemFont(ofSize: 18, weight: .medium)])
+        attributedText.append(NSMutableAttributedString(string:"Following, ", attributes: [.font: UIFont.systemFont(ofSize: 16, weight: .light)]))
+        attributedText.append(NSMutableAttributedString(string:"100 ", attributes: [.font: UIFont.systemFont(ofSize: 18, weight: .medium)]))
+        attributedText.append(NSMutableAttributedString(string:"Followers ", attributes: [.font: UIFont.systemFont(ofSize: 16, weight: .light)]))
+        statusLabel.attributedText = attributedText
+    }
 }
